@@ -105,6 +105,33 @@ def parse(page, query):
             your_body_info_paragraph = ""
         # print(your_body_info_paragraph)
 
+    symptom_headline = page.find(
+        "div", attrs={"class": "wbw-symptoms__headline"})
+    if symptom_headline is not None:
+        symptom_headline = symptom_headline.getText()
+    else:
+        symptom_headline = ""
+
+    symptom_headers = page.find(
+        "div", attrs={"class": "wbw-symptoms__list__item__body-c__headlinev"}
+    )
+    for symptom_header in symptom_headers:
+        if symptom_header is not None:
+            symptom_header = symptom_header.getText()
+        else:
+            symptom_header = ""
+        # print(symptom_header)
+
+    your_body_info_paragraphs = page.find(
+        "div", attrs={"id": "wbw-symptoms__list__item__1"}
+    ).find_all("p")
+    for your_body_info_paragraph in your_body_info_paragraphs:
+        if your_body_info_paragraph is not None:
+            your_body_info_paragraph = your_body_info_paragraph.getText()
+        else:
+            your_body_info_paragraph = ""
+        # print(your_body_info_paragraph)
+
     # return output
 
 
